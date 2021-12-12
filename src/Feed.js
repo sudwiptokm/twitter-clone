@@ -1,9 +1,19 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import db from './firebase';
 import './Feed.css';
 import Post from './Post';
 import Tweetbox from './Tweetbox';
+import FlipMove from 'react-flip-move';
 
 function Feed() {
+    const [posts, setPosts] = useState([]);
+
+    useEffect(() => {
+
+        db.collection("posts").orderBy("id").onSnapshot(snapshot => (
+            setPosts(snapshot.docs.map(doc => doc.data()))
+        ))
+    },[])
     return (
         <div className="feed">
 
@@ -13,14 +23,20 @@ function Feed() {
 
             <Tweetbox />
 
-            <Post 
-                displayName="Leaonardo DiCaprio"
-                username="ldcaprio"
-                verified={true}
-                message="I am the fucking BOSSS"
-                image="https://static.onecms.io/wp-content/uploads/sites/6/2020/07/23/Dicaprio.jpg"
-                avatar="https://media.vanityfair.com/photos/551f1c62fa699a350cfdebbf/master/pass/leonardo-dicaprio-resort.jpg"
-            />
+            <FlipMove>
+                {posts.map((post) => (
+                    <Post
+                        key={post.text}
+                        displayName={post.displayName}
+                        username={post.username}
+                        verified={post.verified}
+                        message={post.message}
+                        avatar={post.avatar}
+                        image={post.image}
+                        id= {post.id}
+                    />
+                ))}
+            </FlipMove>
 
 
         </div>
