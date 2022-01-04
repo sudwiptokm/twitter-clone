@@ -5,7 +5,6 @@ import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';import RepeatIcon from '@mui/icons-material/Repeat';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import IosShareIcon from '@mui/icons-material/IosShare';
-import Timestamp from 'react-timestamp';
 
 const Post = forwardRef((
     {avatar, displayName, username, verified, message, image, time, Date}, ref
@@ -20,10 +19,6 @@ const Post = forwardRef((
                     <div className="text">
                         <h3>{displayName} <span>{verified && <VerifiedUserIcon className='post_badge' />}</span> <span className='post_username'>{username}</span></h3>
                     </div>
-                    {/* <div>
-                        <h4>{Date}</h4>
-                    </div> */}
-                    {/* <Timestamp date={Date} /> */}
                     <div className="description">
                         <p>{message}</p>
                     </div>

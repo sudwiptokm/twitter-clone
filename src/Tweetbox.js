@@ -6,7 +6,7 @@ import './Tweetbox.css';
 function Tweetbox() {
     const [tweetMessage, setTweetMessage] = useState("");
     const [tweetImage, setTweetImage] = useState("");
-    var [addid=0, setAddid] = useState("");
+    const [addid=0, setAddid] = useState("");
 
     const sendTweet = e => {
         e.preventDefault();
@@ -26,7 +26,7 @@ function Tweetbox() {
             id: addid,
         })
 
-        setAddid(addid=parseInt(addid)-1)
+        setAddid(parseInt(addid,10)+1)
         setTweetImage("");
         setTweetMessage("");
     }
